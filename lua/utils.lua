@@ -12,11 +12,21 @@ local function getLastPathComponent(path)
     return components[#components]
 end
 
-M.getRootFolderName = function()
+local function getRootFolderName()
     local project_folder = vim.fn.getcwd()
     local root_dir = getLastPathComponent(project_folder)
 
     return root_dir
+end
+
+M.getFilePathFromRootDir = function(notes_files_dir)
+    -- Get the current root folder
+    local root_dir = getRootFolderName()
+
+    -- Check if the notes file for it is available or not
+    local notes_file_path = string.format("%s/%s.md", notes_files_dir, root_dir)
+
+    return notes_file_path
 end
 
 M.createFileIfNotPresent = function(file_path)
@@ -31,6 +41,35 @@ end
 M.openFileInVerticalSplit = function(file_path)
     local file_open_command = string.format("rightbelow vsplit %s", file_path)
     vim.cmd(file_open_command)
+end
+
+M.saveAndCloseBufferWithFilePath = function(file_path)
+    local buffers = vim.api.nvim_list_bufs()
+    for _, bufnr in ipairs(buffers) do
+        local bufname = vim.fn.bufname(bufnr)
+        if bufname == file_path then
+            -- Save and close
+            vim.api.nvim_buf_call(bufnr, function()
+                vim.cmd('wq')
+            end)
+
+            -- Close the buffer
+            vim.api.nvim_buf_delete(bufnr, { force = true })
+            return
+        end
+    end
+end
+
+M.isBufferOpen = function(file_path)
+    local buffers = vim.api.nvim_list_bufs()
+    for _, bufnr in ipairs(buffers) do
+        local bufname = vim.fn.bufname(bufnr)
+        if bufname == file_path then
+            return true
+        end
+    end
+
+    return false
 end
 
 return M

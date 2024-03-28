@@ -24,8 +24,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 return {
-    "Suhaan-Bhandary/notes.nvim",
-    lazy = false,
+    "Suhaan-Bhandary/notes.nvim"
 }
 ```
 
@@ -33,7 +32,7 @@ Set keymap to open notes:
 
 ```lua
 -- Notes for each project
-vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua require(\"notes\").OpenNotes()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua require(\"notes\").ToggleNotes()<CR>", { noremap = true })
 ```
 
 ## Contributing
