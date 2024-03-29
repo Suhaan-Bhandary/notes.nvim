@@ -40,4 +40,8 @@ M.ToggleNotes = function()
     end
 end
 
+M.ViewAllNotes = function()
+    require("telescope.builtin").find_files({ cwd = notes_files_dir })
+end
+
 return M
