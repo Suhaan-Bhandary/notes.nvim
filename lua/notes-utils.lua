@@ -50,7 +50,7 @@ M.saveAndCloseBufferWithFilePath = function(file_path)
         if bufname == file_path then
             -- Save and close
             vim.api.nvim_buf_call(bufnr, function()
-                vim.cmd('wq')
+                vim.cmd('w')
             end)
 
             -- Close the buffer
