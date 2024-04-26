@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("notes-utils")
 
 local data_path = vim.fn.stdpath("data")
 local notes_files_dir = string.format("%s/notes-files", data_path)
