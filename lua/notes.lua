@@ -1,7 +1,7 @@
 local utils = require("notes-utils")
 
-local data_path = vim.fn.stdpath("data")
-local notes_files_dir = string.format("%s/notes-files", data_path)
+local data_path = "~"
+local notes_files_dir = string.format("%s/nvim-notes", data_path)
 
 local M = {}
 
