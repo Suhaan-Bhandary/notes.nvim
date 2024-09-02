@@ -33,8 +33,6 @@ M.createFileIfNotPresent = function(file_path)
     local file = io.open(file_path, "a")
     if file then
         file:close()
-    else
-        print("Failed to create file:", file_path)
     end
 end
 
