@@ -41,7 +41,16 @@ M.ToggleNotes = function()
 end
 
 M.ViewAllNotes = function()
-    require("telescope.builtin").find_files({ cwd = notes_files_dir })
+    vim.ui.select(vim.fn.globpath(notes_files_dir, "**/*", false, true), {
+        prompt = "Select note",
+        format_item = function(item)
+            return vim.fn.fnamemodify(item, ":.")
+        end,
+    }, function(choice)
+        if choice then
+            vim.cmd("edit " .. choice)
+        end
+    end)
 end
 
 return M

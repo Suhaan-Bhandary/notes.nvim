@@ -1,10 +1,7 @@
-> !IMPORTANT
-> Plugin is working properly but some features are in development.
-
 # Notes Neovim
 
 Plugin to maintain separate notes for each project. It creates a markdown file for each project and can be accessed from it.
-Root directory is used to define a project.
+Notes are stored at ~/nvim-notes.
 
 ![preview](./assets/demo.png)
 
@@ -25,7 +22,6 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 return {
     "Suhaan-Bhandary/notes.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" }
 }
 ```
 
